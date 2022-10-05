@@ -22,3 +22,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Build native executable
+        uses: maxday/quarkus-native-build-docker-action@1
+        with:
+          outputName: app-runner
