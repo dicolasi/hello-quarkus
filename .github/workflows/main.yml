@@ -29,4 +29,4 @@ jobs:
           java-version: '11'
           components: 'native-image'
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package -Pnative
+        run: mvn package -Pnative
