@@ -37,8 +37,12 @@ jobs:
       - name: Build native image
         run: ./mvnw clean package -Dnative -Dquarkus.native.container-build=true
 
-      - name: Tagize
-        uses: langroodi/tagize@v1.0.0
+      - name: Semver Release
+        uses: K-Phoen/semver-release-action@v1.2.0
+        with:
+          release_branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
