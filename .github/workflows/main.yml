@@ -42,11 +42,6 @@ jobs:
       - name: Build native image
         run: ./mvnw clean package -Dnative -Dquarkus.native.container-build=true
 
-      - name: Git Semantic Version
-        uses: paulhatch/semantic-version@v4.0.2
-        with:
-          tag_prefix: "v"
-
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -56,6 +51,7 @@ jobs:
 
       - name: Docker Metadata action
         uses: docker/metadata-action@v4.0.1
+        id: meta
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
@@ -64,6 +60,6 @@ jobs:
         with:
           context: .
           file: src/main/docker/Dockerfile.native
-          push: true
-          tags: ghcr.io/dicolasi/hello-quarkus:main
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
