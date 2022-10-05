@@ -55,5 +55,5 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.native
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ghcr.io/dicolasi/hello-quarkus:main
           labels: ${{ steps.meta.outputs.labels }}
