@@ -32,7 +32,7 @@ jobs:
           cache: 'maven'
 
       - name: Build native image
-        run: ./mvnw clean package -Dnative
+        run: ./mvnw clean package -Dnative -Dquarkus.native.container-build=true
 
 
 
