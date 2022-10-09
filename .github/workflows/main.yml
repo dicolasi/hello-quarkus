@@ -22,6 +22,9 @@ jobs:
       contents: write
       packages: write
 
+    outputs:
+      build_tag: ${{ steps.tag_version.outputs.new_tag }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -77,14 +80,14 @@ jobs:
         - name: Update Kubernetes resources
           run: |
             cd kustomize/base
-            kustomize edit set image ${{ github.repository }}=${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.build.outputs.new_tag }}
+            kustomize edit set image ${{ github.repository }}=${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.build.outputs.build_tag }}
             cat kustomization.yaml
 
         - name: Commit files
           run: |
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            git commit -am "Bump docker tag to `${{ needs.build.outputs.new_tag }}`"
+            git commit -am "Bump docker tag to `${{ needs.build.outputs.build_tag }}`"
 
         - name: Push changes
           uses: ad-m/github-push-action@master
