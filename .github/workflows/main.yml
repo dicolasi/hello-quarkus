@@ -60,7 +60,7 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
-            type=semver,pattern={{version}},value=${{ step.repo_tag.new_tag }}
+            type=semver,pattern={{version}},value=${{ steps.repo_tag.new_tag }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
