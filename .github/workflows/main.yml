@@ -29,6 +29,13 @@ jobs:
       - name: Check conventional commits
         uses: webiny/action-conventional-commits@v1.0.5
 
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+
       - name: Update CHANGELOG
         id: changelog
         uses: Requarks/changelog-action@v1
