@@ -75,11 +75,9 @@ jobs:
             kustomize-version: "4.*"
 
         - name: Update Kubernetes resources
-          env:
-            DOCKER_USERNAME: ${{ github.actor }}
           run: |
             cd kustomize/base
-            kustomize edit set image hello-quarkus=$DOCKER_USERNAME/hello-gitops:$GITHUB_SHA
+            kustomize edit set image hello-quarkus=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
             cat kustomization.yaml
 
         - name: Commit files
