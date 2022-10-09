@@ -31,6 +31,7 @@ jobs:
 
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@v1
+        id: repo_tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
@@ -59,7 +60,7 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
-            type=semver,pattern={{version}}
+            type=semver,pattern={{version}},value=${{ step.repo_tag.new_tag }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
@@ -79,8 +80,6 @@ jobs:
 
         - name: Setup Kustomize
           uses: imranismail/setup-kustomize@v1.7.0
-          with:
-            kustomize-version: "4.*"
 
         - name: Update Kubernetes resources
           run: |
