@@ -72,24 +72,16 @@ jobs:
           with:
             fetch-depth: 0
 
-        - name: Setup Kustomize
+        - name: Kustomize manifest
           uses: imranismail/setup-kustomize@v1.7.0
           with:
             kustomize-version: "4.*"
-
-        - name: Update Kubernetes resources
           run: |
             cd kustomize/base
             kustomize edit set image ${{ github.repository }}=${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.build.outputs.build_tag }}
-            cat kustomization.yaml
-
-        - name: Commit files
-          run: |
+            
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git commit -am "Bump docker tag to `${{ needs.build.outputs.build_tag }}`"
-
-        - name: Push changes
-          uses: ad-m/github-push-action@master
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+            
+            git push
