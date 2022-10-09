@@ -71,8 +71,6 @@ jobs:
         with:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}
-          tags: |
-            type=sha
             
 
       - name: Build and push Docker image
