@@ -80,7 +80,7 @@ jobs:
         - name: Update Kubernetes resources
           run: |
             cd kustomize/base
-            kustomize edit set image hello-quarkus=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.new_tag }}
+            kustomize edit set image ${{ github.repository }}=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.new_tag }}
 
         - name: Commit files
           run: |
