@@ -1,23 +1,26 @@
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello-quarkus
-  name: hello-quarkus
+    app: hello-gitops
+  name: hello-gitops
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: app_name
+      app: hello-gitops
   template:
     metadata:
       labels:
-        app: app_name
+        app: hello-gitops
     spec:
       containers:
-        - name: hello-quarkus
-          image: hello-quarkus
+        - image: dicolasi/hello-quarkus
+          name: hello-quarkus
           ports:
             - name: http
               containerPort: 8080
       imagePullSecrets:
-        - name: registry-sec
+        - name: registry-esys
