@@ -59,7 +59,7 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.native
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ github.sha }}, latest
           labels: ${{ steps.meta.outputs.labels }}
   deploy:
       runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
         - name: Update Kubernetes resources
           run: |
             cd kustomize/base
-            kustomize edit set image hello-quarkus=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+            kustomize edit set image hello-quarkus=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
             cat kustomization.yaml
 
         - name: Commit files
