@@ -6,3 +6,4 @@ resources:
 images:
 - name: hello-quarkus
   newName: ghcr.io/dicolasi/hello-quarkus
+  newTag: sto-gran-cazzo
