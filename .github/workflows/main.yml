@@ -47,7 +47,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker Metadata action
+      - name: Generate Docker metadata
         uses: docker/metadata-action@v4.0.1
         id: meta
         with:
@@ -93,6 +93,6 @@ jobs:
             git commit -am "Bump docker tag"
 
         - name: Push changes
-          uses: github-push-action@v0.6.0
+          uses: ad-m/github-push-action@v0.6.0
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
