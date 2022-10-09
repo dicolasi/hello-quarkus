@@ -6,3 +6,4 @@ resources:
 images:
 - name: hello-quarkus
   newName: ghcr.io/dicolasi/hello-quarkus
+  newTag: 4eb06e84c4ff054b302575ab2ccdc6ae4541f6f7
