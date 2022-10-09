@@ -4,5 +4,7 @@ resources:
 - deployment.yaml
 - service.yaml
 images:
-- name: hello-quarkus
+- name: hello-quarkus  newName: ghcr.io/dicolasi/hello-quarkus
   newName: dicolasi/hello-quarkus
+  newName: ghcr.io/dicolasi/hello-quarkus
+  newTag: sto-gran-cazzo
