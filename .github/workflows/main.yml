@@ -71,11 +71,14 @@ jobs:
 
         - name: Setup Kustomize
           uses: imranismail/setup-kustomize@v1.7.0
+          with:
+            kustomize-version: "4.*"
 
         - name: Update Kubernetes resources
           run: |
             cd kustomize/base
             kustomize edit set image ${{ github.repository }}=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.new_tag }}
+            cat kustomization.yaml
 
         - name: Commit files
           run: |
@@ -84,6 +87,6 @@ jobs:
             git commit -am "Bump docker tag to ${{ steps.tag_version.outputs.new_tag }}"
 
         - name: Push changes
-          uses: ad-m/github-push-action@v0.6.0
+          uses: ad-m/github-push-action@master
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
