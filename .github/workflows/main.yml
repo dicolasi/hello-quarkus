@@ -83,7 +83,6 @@ jobs:
           run: |
             cd kustomize/base
             kustomize edit set image hello-quarkus=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
-            cat kustomization.yaml
 
         - name: Commit files
           run: |
@@ -92,6 +91,6 @@ jobs:
             git commit -am "Bump docker tag"
 
         - name: Push changes
-          uses: ad-m/github-push-action@master
+          uses: github-push-action@v0.6.0
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
