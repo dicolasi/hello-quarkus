@@ -36,12 +36,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
 
-      - name: Update CHANGELOG
-        id: changelog
-        uses: Requarks/changelog-action@v1
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v0.1.14
         with:
-          token: ${{ github.token }}
-          tag: ${{ github.ref_name }}
+          body: ${{steps.github_release.outputs.changelog}}
 
       - name: Set up JDK
         uses: actions/setup-java@v3
