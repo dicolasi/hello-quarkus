@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-quarkus
+  name: hello-quarkus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-quarkus
+  template:
+    spec:
+      containers:
+        - name: hello-quarkus
+          image: hello-quarkus
+          ports:
+            - name: http
+              containerPort: 8080
+      imagePullSecrets:
+        - name: registry-sec
