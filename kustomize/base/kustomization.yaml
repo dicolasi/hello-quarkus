@@ -5,5 +5,4 @@ resources:
 - service.yaml
 images:
 - name: hello-quarkus
-  newName: dicolasi/hello-quarkus
-  newTag: v0.2.3.32
+  newName: ghcr.io/
