@@ -29,6 +29,13 @@ jobs:
       - name: Check conventional commits
         uses: webiny/action-conventional-commits@v1.0.5
 
+      - name: Update CHANGELOG
+        id: changelog
+        uses: Requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          tag: ${{ github.ref_name }}
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
