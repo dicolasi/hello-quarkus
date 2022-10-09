@@ -77,7 +77,7 @@ jobs:
         - name: Update Kubernetes resources
           run: |
             cd kustomize/base
-            kustomize edit set image hello-quarkus=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ build.steps.meta.outputs.tags }}
+            kustomize edit set image hello-quarkus=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
             cat kustomization.yaml
 
         - name: Commit files
