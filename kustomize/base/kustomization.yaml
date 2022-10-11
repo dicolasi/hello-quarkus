@@ -3,7 +3,3 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
-images:
-- name: dicolasi/hello-quarkus
-  newName: ghcr.io/dicolasi/hello-quarkus
-  newTag: v0.12.33
