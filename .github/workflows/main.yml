@@ -83,5 +83,3 @@ jobs:
             kustomize edit set image ${{ needs.build.outputs.source_repo }}=${{ env.REGISTRY }}/${{ needs.build.outputs.source_repo }}:${{ needs.build.outputs.build_tag }}
 
         - uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            create_branch: true
