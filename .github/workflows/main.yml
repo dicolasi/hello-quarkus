@@ -64,8 +64,9 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ steps.tag_version.outputs.new_tag }}
   deploy:
       permissions:
-        contents: write
-        packages: write
+         pull-requests: write
+         content: write
+
 
       runs-on: ubuntu-latest
       needs: build
