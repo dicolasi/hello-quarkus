@@ -80,7 +80,7 @@ jobs:
 
         - name: Update Kubernetes resources
           run: |
-            cd apps/hello-world/base
+            cd apps/hello-world/baseX
             kustomize edit set image ${{ github.repository }}=${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.build.outputs.build_tag }}
 
         - name: Create a pull request
