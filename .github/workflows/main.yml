@@ -24,6 +24,7 @@ jobs:
 
     outputs:
       build_tag: ${{ steps.tag_version.outputs.new_tag }}
+      source_repo: ${{ github.repository }}
 
     steps:
       - name: Checkout repository
@@ -79,7 +80,7 @@ jobs:
         - name: Update Kubernetes resources
           run: |
             cd apps/hello-world/base
-            kustomize edit set image ${{ github.repository }}=${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.build.outputs.build_tag }}
+            kustomize edit set image ${{ needs.build.outputs.source_repo }}=${{ env.REGISTRY }}/${{ needs.build.outputs.source_repo }}:${{ needs.build.outputs.build_tag }}
 
         - name: Create a pull request
           uses: peter-evans/create-pull-request@v4
