@@ -96,7 +96,7 @@ jobs:
           signoff: false
           branch: patch-${{ needs.build.outputs.build_tag }}
           delete-branch: true
-          title: '[Example] Update tag'
+          title: ' Test Update tag'
           labels: |
             report
             automated pr
