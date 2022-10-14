@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: hello-quarkus
+        test: me
     spec:
       containers:
         - image: dicolasi/hello-quarkus
